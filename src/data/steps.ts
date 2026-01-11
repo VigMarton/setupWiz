@@ -415,7 +415,41 @@ VERIFY REMOVAL:
     whyItMatters: 'Standardizes environment and saves time later.',
     skipAllowed: true,
     skipWhen: 'Using automated deployment (rare in your case)',
-    detailedInstructions: `INSTALL 7-ZIP (File Archiver):
+    detailedInstructions: `SOFTWARE OVERVIEW:
+
+7-ZIP (File Archiver):
+• Description: Free, open-source file archiver that handles ZIP, RAR, 7z, and many other formats
+• Why use it: Essential for extracting compressed files, creating archives, and handling formats Windows can't natively open. Lightweight and fast.
+• Install when: You work with compressed files, download software, or need to create archives
+• Skip when: You only use Windows built-in ZIP support and never encounter other formats
+
+VLC MEDIA PLAYER:
+• Description: Free, open-source media player that plays almost any video/audio format
+• Why use it: Plays formats Windows Media Player can't handle (MKV, FLAC, etc.). No codec installation needed. Works offline.
+• Install when: You watch videos, listen to music, or need a reliable media player
+• Skip when: You only stream content online and never download media files
+
+SUMATRAPDF (PDF Reader):
+• Description: Lightweight, fast PDF viewer with minimal resource usage
+• Why use it: Much faster than Adobe Reader, opens instantly, no bloatware. Perfect for quick PDF viewing.
+• Install when: You regularly view PDF documents, forms, or manuals
+• Skip when: You only view PDFs in your browser and never need a standalone reader
+
+MICROSOFT POWERTOYS:
+• Description: Microsoft's official collection of productivity utilities for Windows power users
+• Why use it: Adds features like window management, color picker, text extractor, image resizer, and many more productivity tools
+• Install when: You want to enhance Windows productivity, manage windows better, or use advanced utilities
+• Skip when: You prefer minimal software installation and don't need extra Windows features
+
+EVERYTHING (File Search Tool):
+• Description: Lightning-fast file search tool that indexes your entire drive instantly
+• Why use it: Finds files in seconds instead of minutes. Much faster than Windows Search. Indexes file names instantly.
+• Install when: You frequently search for files, work with many documents, or need quick file access
+• Skip when: You rarely search for files and Windows Search is sufficient for your needs
+
+INSTALLATION INSTRUCTIONS:
+
+INSTALL 7-ZIP (File Archiver):
 1. Open your web browser
 2. Go to: https://www.7-zip.org/download.html
 3. Download the latest version (64-bit x64 for most modern computers)
