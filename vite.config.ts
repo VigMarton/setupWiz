@@ -4,6 +4,8 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/setupWiz/',
+  // Root path for Vercel deployment
+  // Change to '/setupWiz/' if deploying to GitHub Pages
+  base: '/',
 })
 
