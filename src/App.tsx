@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { steps, StepStatus } from './data/steps';
 import StepSidebar from './components/StepSidebar';
 import StepScreen from './steps/StepScreen';
@@ -19,6 +19,7 @@ function App() {
     new Array(steps.length).fill('not_started' as StepStatus)
   );
   const [skipReasons, setSkipReasons] = useState<Record<number, string>>({});
+  const mainContentRef = useRef<HTMLDivElement>(null);
 
   // Load state from localStorage on mount
   useEffect(() => {
@@ -44,6 +45,21 @@ function App() {
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [currentStepIndex, stepStatuses, skipReasons]);
+
+  // Scroll to top when step changes
+  useEffect(() => {
+    // Use requestAnimationFrame to ensure scroll happens after DOM updates
+    const scrollToTop = () => {
+      if (mainContentRef.current) {
+        mainContentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+    
+    // Double RAF to ensure it runs after React's render cycle
+    requestAnimationFrame(() => {
+      requestAnimationFrame(scrollToTop);
+    });
+  }, [currentStepIndex]);
 
   const handleStepClick = (index: number) => {
     setCurrentStepIndex(index);
@@ -89,7 +105,7 @@ function App() {
         stepStatuses={stepStatuses}
         onStepClick={handleStepClick}
       />
-      <div className="main-content">
+      <div className="main-content" ref={mainContentRef}>
         {isSummaryStep ? (
           <SummaryStep
             steps={steps}

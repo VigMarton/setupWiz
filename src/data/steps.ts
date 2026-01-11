@@ -97,7 +97,7 @@ VERIFY UPDATE STATUS:
     skipWhen: 'Not a Dell machine',
     detailedInstructions: `DOWNLOAD DELL COMMAND | UPDATE:
 1. Open your web browser
-2. Navigate to: https://www.dell.com/support/kb/article/en-us/sln305843/dell-command-update
+2. Navigate to: https://www.dell.com/support/kbdoc/en-us/000177325/dell-command-update
    OR search "Dell Command Update download" in your browser
 3. Click the download link for Dell Command | Update
 4. Choose the appropriate version (usually the latest)

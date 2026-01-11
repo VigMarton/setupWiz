@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Step, StepStatus } from '../data/steps';
 
 interface StepScreenProps {
@@ -26,6 +26,7 @@ export default function StepScreen({
   const [isSkipped, setIsSkipped] = useState(false);
   const [skipConfirmed, setSkipConfirmed] = useState(false);
   const [instructionsExpanded, setInstructionsExpanded] = useState(false);
+  const stepContentRef = useRef<HTMLDivElement>(null);
 
   // Reset state when step changes
   useEffect(() => {
@@ -33,6 +34,21 @@ export default function StepScreen({
     setIsSkipped(status === 'skipped');
     setSkipConfirmed(false);
     setInstructionsExpanded(false);
+    
+    // Scroll to top when step changes
+    const scrollToTop = () => {
+      // Try to scroll the main content container (parent)
+      const mainContent = stepContentRef.current?.closest('.main-content') as HTMLElement;
+      if (mainContent) {
+        mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      // Also try window scroll as fallback
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    
+    requestAnimationFrame(() => {
+      requestAnimationFrame(scrollToTop);
+    });
   }, [step.id, status]);
 
   const canProceed = isCompleted || (isSkipped && skipConfirmed);
@@ -64,7 +80,7 @@ export default function StepScreen({
   };
 
   return (
-    <div className="step-content">
+    <div className="step-content" ref={stepContentRef}>
       <div className="progress-indicator">
         Step {stepNumber} of {totalSteps} – {step.title}
       </div>
