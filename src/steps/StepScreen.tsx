@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Step, StepStatus } from '../data/steps';
 
 interface StepScreenProps {
@@ -22,10 +22,18 @@ export default function StepScreen({
   onBack,
   onNext,
 }: StepScreenProps) {
-  const [isCompleted, setIsCompleted] = useState(status === 'completed');
-  const [isSkipped, setIsSkipped] = useState(status === 'skipped');
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [isSkipped, setIsSkipped] = useState(false);
   const [skipConfirmed, setSkipConfirmed] = useState(false);
   const [instructionsExpanded, setInstructionsExpanded] = useState(false);
+
+  // Reset state when step changes
+  useEffect(() => {
+    setIsCompleted(status === 'completed');
+    setIsSkipped(status === 'skipped');
+    setSkipConfirmed(false);
+    setInstructionsExpanded(false);
+  }, [step.id, status]);
 
   const canProceed = isCompleted || (isSkipped && skipConfirmed);
 
