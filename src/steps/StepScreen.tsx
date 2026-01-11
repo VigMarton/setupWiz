@@ -37,18 +37,26 @@ export default function StepScreen({
     
     // Scroll to top when step changes
     const scrollToTop = () => {
-      // Try to scroll the main content container (parent)
+      // Find and scroll the main content container
       const mainContent = stepContentRef.current?.closest('.main-content') as HTMLElement;
       if (mainContent) {
-        mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+        mainContent.scrollTop = 0;
       }
-      // Also try window scroll as fallback
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Also scroll window as fallback
+      window.scrollTo(0, 0);
     };
     
-    requestAnimationFrame(() => {
-      requestAnimationFrame(scrollToTop);
-    });
+    // Immediate scroll
+    scrollToTop();
+    
+    // Delayed scrolls to ensure it works
+    const timeout1 = setTimeout(scrollToTop, 10);
+    const timeout2 = setTimeout(scrollToTop, 100);
+    
+    return () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
   }, [step.id, status]);
 
   const canProceed = isCompleted || (isSkipped && skipConfirmed);

@@ -48,17 +48,26 @@ function App() {
 
   // Scroll to top when step changes
   useEffect(() => {
-    // Use requestAnimationFrame to ensure scroll happens after DOM updates
+    // Scroll immediately and also after a short delay to ensure it works
     const scrollToTop = () => {
       if (mainContentRef.current) {
-        mainContentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+        mainContentRef.current.scrollTop = 0;
       }
+      // Also scroll window as fallback
+      window.scrollTo(0, 0);
     };
     
-    // Double RAF to ensure it runs after React's render cycle
-    requestAnimationFrame(() => {
-      requestAnimationFrame(scrollToTop);
-    });
+    // Immediate scroll
+    scrollToTop();
+    
+    // Delayed scroll to catch any late renders
+    const timeout1 = setTimeout(scrollToTop, 10);
+    const timeout2 = setTimeout(scrollToTop, 100);
+    
+    return () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
   }, [currentStepIndex]);
 
   const handleStepClick = (index: number) => {

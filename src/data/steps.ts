@@ -521,7 +521,35 @@ INSTALL EVERYTHING (File Search Tool):
     whyItMatters: 'Most risk comes from the browser.',
     skipAllowed: true,
     skipWhen: 'Browser will be managed by policy (enterprise)',
-    detailedInstructions: `INSTALL BROWSER (if not already installed):
+    detailedInstructions: `EXTENSIONS OVERVIEW:
+
+UBLOCK ORIGIN (Ad Blocker):
+• Description: Free, open-source ad blocker that removes ads, trackers, and malicious content from websites
+• Why use it: Blocks annoying ads, improves page load speed, reduces data usage, protects against malware, and improves privacy by blocking trackers
+• Install when: You browse the web regularly and want a cleaner, faster, safer browsing experience
+• Skip when: You need to see ads for testing purposes, or your organization blocks extension installation
+
+BITWARDEN (Password Manager):
+• Description: Free, open-source password manager that securely stores and autofills passwords across devices
+• Why use it: Creates strong unique passwords, syncs across devices, autofills login forms, stores secure notes, and helps prevent password reuse. Free tier is very capable.
+• Install when: You have multiple online accounts, want better security, or struggle to remember passwords
+• Skip when: You already use another password manager (LastPass, 1Password, etc.) or prefer to manage passwords manually
+
+DARK READER (Dark Mode - Optional):
+• Description: Browser extension that automatically applies dark mode to all websites, reducing eye strain
+• Why use it: Reduces eye strain in low-light conditions, saves battery on OLED screens, and provides consistent dark theme across all websites
+• Install when: You browse at night, prefer dark themes, or have sensitive eyes
+• Skip when: You prefer light themes, don't browse in dark environments, or websites already have dark mode
+
+ONETAB (Tab Manager - Optional):
+• Description: Browser extension that collapses all open tabs into a single list, reducing memory usage
+• Why use it: Saves browser memory when you have many tabs open, helps organize tab collections, and makes it easy to restore tabs later
+• Install when: You frequently have 10+ tabs open, want to reduce browser memory usage, or need to save tab sessions
+• Skip when: You rarely have many tabs open, or your browser already handles tabs efficiently
+
+INSTALLATION INSTRUCTIONS:
+
+INSTALL BROWSER (if not already installed):
 For Chrome:
 1. Open your web browser (Edge comes with Windows)
 2. Go to: https://www.google.com/chrome/
@@ -968,7 +996,61 @@ VERIFY ALL HARDWARE WORKS:
     whyItMatters: 'Improves comfort and productivity.',
     skipAllowed: true,
     skipWhen: 'Strict minimal deployment',
-    detailedInstructions: `ENABLE DARK MODE:
+    detailedInstructions: `ENHANCEMENTS OVERVIEW:
+
+DARK MODE:
+• Description: Changes Windows interface and apps to a dark color scheme
+• Why use it: Reduces eye strain in low-light conditions, saves battery on OLED screens, modern look
+• Enable when: You work in dim environments, prefer dark themes, or want to reduce eye fatigue
+• Skip when: You prefer light themes or work in bright environments
+
+NIGHT LIGHT:
+• Description: Automatically reduces blue light from screen in the evening
+• Why use it: Helps maintain natural sleep cycle, reduces eye strain, warmer screen is easier on eyes at night
+• Enable when: You use computer in the evening/night, have trouble sleeping, or experience eye strain
+• Skip when: You only use computer during daytime or don't experience sleep issues
+
+CLIPBOARD HISTORY:
+• Description: Windows feature that stores multiple copied items for easy access
+• Why use it: Paste previously copied items, copy multiple things without losing previous ones, saves time
+• Enable when: You frequently copy/paste multiple items, work with text/images, or want productivity boost
+• Skip when: You rarely copy/paste or prefer simple single-item clipboard
+
+SNAP LAYOUTS (Window Management):
+• Description: Quick window arrangement tool for organizing multiple windows
+• Why use it: Organize windows efficiently, multitask better, quick window layouts
+• Enable when: You work with multiple windows/apps simultaneously or want better window organization
+• Skip when: You typically use one window at a time or prefer manual window arrangement
+
+VIRTUAL DESKTOPS:
+• Description: Create multiple desktop workspaces to organize different tasks
+• Why use it: Separate work sessions, organize projects, reduce clutter, better focus
+• Enable when: You multitask heavily, work on multiple projects, or want better organization
+• Skip when: You work on single tasks or prefer everything on one desktop
+
+FOCUS ASSIST (Do Not Disturb):
+• Description: Reduces notifications and distractions during focused work time
+• Why use it: Stay focused, reduce interruptions, set quiet hours automatically
+• Enable when: You need uninterrupted work time, get distracted easily, or want scheduled quiet time
+• Skip when: You need all notifications immediately or don't get distracted by them
+
+CUSTOMIZE START MENU:
+• Description: Personalize what appears in Windows Start menu
+• Why use it: Quick access to what you use, cleaner interface, personalized experience
+• Enable when: You want faster access to apps or prefer customized interface
+• Skip when: Default Start menu works fine for you
+
+GADGETS RECOMMENDATIONS:
+• Rainmeter: Desktop customization tool for widgets and themes
+• Fences: Organizes desktop icons into groups
+• ShareX: Advanced screenshot and screen recording tool
+• QuickLook: Preview files without opening them (like macOS Quick Look)
+• Install when: You want enhanced desktop functionality or productivity tools
+• Skip when: You prefer minimal software or built-in Windows tools are sufficient
+
+SETUP INSTRUCTIONS:
+
+ENABLE DARK MODE:
 1. Press Windows key + I to open Settings
 2. Click "Personalization" → "Colors" (or search "Dark mode")
 3. Under "Choose your mode", select "Dark"

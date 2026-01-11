@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Step, StepStatus } from '../data/steps';
 
 interface SummaryStepProps {
@@ -36,9 +37,30 @@ export default function SummaryStep({
   const completedSteps = stepStatuses.filter((s) => s === 'completed').length;
   const skippedSteps = stepStatuses.filter((s) => s === 'skipped').length;
   const totalSteps = steps.length;
+  const summaryRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to top when summary step loads
+  useEffect(() => {
+    const scrollToTop = () => {
+      const mainContent = summaryRef.current?.closest('.main-content') as HTMLElement;
+      if (mainContent) {
+        mainContent.scrollTop = 0;
+      }
+      window.scrollTo(0, 0);
+    };
+    
+    scrollToTop();
+    const timeout1 = setTimeout(scrollToTop, 10);
+    const timeout2 = setTimeout(scrollToTop, 100);
+    
+    return () => {
+      clearTimeout(timeout1);
+      clearTimeout(timeout2);
+    };
+  }, []);
 
   return (
-    <div className="step-content">
+    <div className="step-content" ref={summaryRef}>
       <div className="progress-indicator">
         Step {totalSteps} of {totalSteps} – Completion Summary
       </div>
