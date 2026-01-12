@@ -66,9 +66,26 @@ Preview the production build locally:
 npm run preview
 ```
 
-## Deployment to GitHub Pages
+## Deployment
 
-This project is configured for GitHub Pages deployment.
+### Deploy to Vercel (Recommended)
+
+The easiest way to deploy is using Vercel:
+
+1. **Link your GitHub repository** to Vercel (already done)
+2. **Vercel will auto-detect** the Vite project and configure it automatically
+3. **Deploy**: Vercel will build and deploy automatically on every push to your main branch
+
+The project is already configured with `vercel.json` for optimal deployment.
+
+**Manual deployment** (if needed):
+- Install Vercel CLI: `npm i -g vercel`
+- Run `vercel` in the project directory
+- Follow the prompts
+
+### Deploy to GitHub Pages
+
+This project can also be deployed to GitHub Pages.
 
 ### Option 1: Using npm script
 
@@ -89,6 +106,8 @@ This will build the project and push it to the `gh-pages` branch.
    - Navigate to Settings → Pages
    - Under "Source", select the `gh-pages` branch
    - Your app will be available at `https://vigmarton.github.io/setupWiz/`
+
+**Note**: For GitHub Pages, you'll need to change `base: '/'` to `base: '/setupWiz/'` in `vite.config.ts` before building.
 
 ### Option 2: Manual deployment
 
