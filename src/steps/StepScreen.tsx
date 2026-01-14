@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Step, StepStatus } from '../data/steps';
+import Modal from '../components/Modal';
 
 interface StepScreenProps {
   step: Step;
@@ -26,6 +27,7 @@ export default function StepScreen({
   const [isSkipped, setIsSkipped] = useState(false);
   const [skipConfirmed, setSkipConfirmed] = useState(false);
   const [instructionsExpanded, setInstructionsExpanded] = useState(false);
+  const [isBitwardenModalOpen, setIsBitwardenModalOpen] = useState(false);
   const stepContentRef = useRef<HTMLDivElement>(null);
 
   // Reset state when step changes
@@ -34,6 +36,7 @@ export default function StepScreen({
     setIsSkipped(status === 'skipped');
     setSkipConfirmed(false);
     setInstructionsExpanded(false);
+    setIsBitwardenModalOpen(false);
     
     // Scroll to top when step changes
     const scrollToTop = () => {
@@ -100,7 +103,105 @@ export default function StepScreen({
         {step.estimatedTime && (
           <p className="step-time">Estimated time: {step.estimatedTime}</p>
         )}
+
+        {step.id === 'browser-setup-extensions' && (
+          <div
+            className="microcopy-link"
+            role="button"
+            tabIndex={0}
+            onClick={() => setIsBitwardenModalOpen(true)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') setIsBitwardenModalOpen(true);
+            }}
+          >
+            <span className="microcopy-icon" aria-hidden="true">
+              i
+            </span>
+            What is Bitwarden and how should I use it?
+          </div>
+        )}
       </div>
+
+      <Modal
+        isOpen={isBitwardenModalOpen}
+        title="Bitwarden (Password Manager) — What it is and how to use it"
+        onClose={() => setIsBitwardenModalOpen(false)}
+      >
+        <p>
+          Bitwarden is a password manager that stores your logins in an encrypted “vault” and can
+          auto-fill them in your browser. It helps you use strong, unique passwords for every site
+          without needing to remember them all.
+        </p>
+
+        <p style={{ marginTop: '12px', fontWeight: 600 }}>Why it’s worth using</p>
+        <ul style={{ marginLeft: '18px', marginTop: '6px' }}>
+          <li>
+            <strong>Strong unique passwords</strong>: reduces risk from password reuse.
+          </li>
+          <li>
+            <strong>Auto-fill</strong>: faster logins with fewer typing mistakes.
+          </li>
+          <li>
+            <strong>Cross-device sync</strong>: your vault is available on desktop + mobile.
+          </li>
+          <li>
+            <strong>Secure notes</strong>: store recovery codes, license keys, Wi‑Fi passwords, etc.
+          </li>
+        </ul>
+
+        <p style={{ marginTop: '12px', fontWeight: 600 }}>Recommended setup (5–10 minutes)</p>
+        <ol style={{ marginLeft: '18px', marginTop: '6px' }}>
+          <li>
+            Create an account on <a href="https://bitwarden.com/" target="_blank" rel="noreferrer">bitwarden.com</a>.
+          </li>
+          <li>
+            Choose a <strong>long master password</strong> (a passphrase is ideal). This is the one
+            password you must remember.
+          </li>
+          <li>
+            Install the browser extension (already linked in this step) and log in.
+          </li>
+          <li>
+            Turn on <strong>2FA</strong> for your Bitwarden account (authenticator app or security key).
+          </li>
+          <li>
+            Import passwords (optional) or start saving logins as you sign in.
+          </li>
+        </ol>
+
+        <p style={{ marginTop: '12px', fontWeight: 600 }}>Everyday workflow</p>
+        <ul style={{ marginLeft: '18px', marginTop: '6px' }}>
+          <li>
+            When you create a new account, use Bitwarden’s <strong>password generator</strong>.
+          </li>
+          <li>
+            Save the login when prompted (or add it manually if a site is unusual).
+          </li>
+          <li>
+            Use auto-fill (or click the extension icon) to log in quickly and safely.
+          </li>
+          <li>
+            Store <strong>account recovery codes</strong> and <strong>2FA backup codes</strong> in a secure note.
+          </li>
+        </ul>
+
+        <p style={{ marginTop: '12px', fontWeight: 600 }}>Good security habits</p>
+        <ul style={{ marginLeft: '18px', marginTop: '6px' }}>
+          <li>
+            Don’t reuse passwords. Let Bitwarden generate them.
+          </li>
+          <li>
+            Enable 2FA on important sites (email, banking, password manager).
+          </li>
+          <li>
+            Keep your recovery codes somewhere safe (Bitwarden secure note + an offline backup if you prefer).
+          </li>
+        </ul>
+
+        <p style={{ marginTop: '12px' }}>
+          Learn more: <a href="https://bitwarden.com/help/" target="_blank" rel="noreferrer">Bitwarden Help Center</a>
+        </p>
+      </Modal>
 
       {step.warningText && (
         <div className="warning-box">
